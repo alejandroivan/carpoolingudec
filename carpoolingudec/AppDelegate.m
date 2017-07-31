@@ -7,7 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "GoogleMapsAPIKey.h"
 @import Firebase;
+@import GoogleMaps;
+@import GooglePlaces;
 
 @interface AppDelegate ()
 
@@ -19,6 +22,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [FIRApp configure];
+    [GMSServices provideAPIKey:kGoogleMapsAPIKey];
+    [GMSPlacesClient provideAPIKey:kGoogleMapsAPIKey];
+    
     return YES;
 }
 
