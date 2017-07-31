@@ -15,6 +15,7 @@
 		2C6512341F2ED51E006AB520 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C6512321F2ED51E006AB520 /* LaunchScreen.storyboard */; };
 		2C65123E1F2ED661006AB520 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C65123D1F2ED661006AB520 /* GoogleService-Info.plist */; };
 		2C6512401F2ED780006AB520 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C65123F1F2ED780006AB520 /* AdSupport.framework */; };
+		2C6512451F2ED85E006AB520 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6512441F2ED85E006AB520 /* LoginManager.m */; };
 		752198FC3B47394575B21DF3 /* libPods-carpoolingudec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 464636D36AF42802314BC3C3 /* libPods-carpoolingudec.a */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,8 @@
 		2C6512351F2ED51E006AB520 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C65123D1F2ED661006AB520 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2C65123F1F2ED780006AB520 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		2C6512431F2ED85E006AB520 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginManager.h; path = carpoolingudec/Frameworks/LoginManager/LoginManager.h; sourceTree = "<group>"; };
+		2C6512441F2ED85E006AB520 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginManager.m; path = carpoolingudec/Frameworks/LoginManager/LoginManager.m; sourceTree = "<group>"; };
 		464636D36AF42802314BC3C3 /* libPods-carpoolingudec.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-carpoolingudec.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFFA911C2C92D7B9A1E9E816 /* Pods-carpoolingudec.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-carpoolingudec.release.xcconfig"; path = "Pods/Target Support Files/Pods-carpoolingudec/Pods-carpoolingudec.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,6 +55,7 @@
 		2C6512181F2ED51E006AB520 = {
 			isa = PBXGroup;
 			children = (
+				2C6512411F2ED838006AB520 /* Frameworks */,
 				2C6512231F2ED51E006AB520 /* carpoolingudec */,
 				2C6512221F2ED51E006AB520 /* Products */,
 				6266895C9F0405F2677F4385 /* Pods */,
@@ -90,6 +94,23 @@
 				2C6512251F2ED51E006AB520 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2C6512411F2ED838006AB520 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2C6512421F2ED845006AB520 /* LoginManager */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2C6512421F2ED845006AB520 /* LoginManager */ = {
+			isa = PBXGroup;
+			children = (
+				2C6512431F2ED85E006AB520 /* LoginManager.h */,
+				2C6512441F2ED85E006AB520 /* LoginManager.m */,
+			);
+			name = LoginManager;
 			sourceTree = "<group>";
 		};
 		6266895C9F0405F2677F4385 /* Pods */ = {
@@ -235,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C65122C1F2ED51E006AB520 /* ViewController.m in Sources */,
+				2C6512451F2ED85E006AB520 /* LoginManager.m in Sources */,
 				2C6512291F2ED51E006AB520 /* AppDelegate.m in Sources */,
 				2C6512261F2ED51E006AB520 /* main.m in Sources */,
 			);
