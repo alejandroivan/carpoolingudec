@@ -1,0 +1,84 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - Firebase/Core (3.10.0):
+    - FirebaseAnalytics (= 3.6.0)
+    - FirebaseCore (= 3.4.5)
+  - FirebaseAnalytics (3.6.0):
+    - FirebaseCore (~> 3.4)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleInterchangeUtilities (~> 1.2)
+    - GoogleSymbolUtilities (~> 1.1)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseCore (3.4.5):
+    - GoogleInterchangeUtilities (~> 1.2)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseInstanceID (1.0.8)
+  - GoogleInterchangeUtilities (1.2.2):
+    - GoogleSymbolUtilities (~> 1.1)
+  - GoogleMaps (2.1.1):
+    - GoogleMaps/Maps (= 2.1.1)
+  - GoogleMaps/Base (2.1.1)
+  - GoogleMaps/Maps (2.1.1):
+    - GoogleMaps/Base
+  - GooglePlaces (2.1.1):
+    - GoogleMaps/Base (= 2.1.1)
+  - GoogleSymbolUtilities (1.1.2)
+  - GoogleToolboxForMac/Defines (2.1.0)
+  - GoogleToolboxForMac/NSData+zlib (2.1.0):
+    - GoogleToolboxForMac/Defines (= 2.1.0)
+  - MFSideMenu (0.5.6)
+  - NSUserDefaults-Convenience (0.0.2)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.0)
+  - Firebase/Core
+  - GoogleMaps
+  - GooglePlaces
+  - MFSideMenu (from `git@github.com:alejandroivan/MFSideMenu.git`)
+  - NSUserDefaults-Convenience (from `https://github.com/alejandroivan/NSUserDefaults-Convenience.git`)
+
+EXTERNAL SOURCES:
+  MFSideMenu:
+    :git: git@github.com:alejandroivan/MFSideMenu.git
+  NSUserDefaults-Convenience:
+    :git: https://github.com/alejandroivan/NSUserDefaults-Convenience.git
+
+CHECKOUT OPTIONS:
+  MFSideMenu:
+    :commit: dd38cfe2f17ed530dc01a1a22669e9295f655411
+    :git: git@github.com:alejandroivan/MFSideMenu.git
+  NSUserDefaults-Convenience:
+    :commit: 9d908f9b0dbe1b68dd5531e57d0e14635755f5f4
+    :git: https://github.com/alejandroivan/NSUserDefaults-Convenience.git
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  Firebase: 387f37c7dca894a02708da9ff35ba147040eae9e
+  FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
+  FirebaseCore: 1e383fdfe37b6b5d6ff88e84204bdee30276af0f
+  FirebaseInstanceID: ba1e640935235e5fac39dfa816fe7660e72e1a8a
+  GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
+  GoogleMaps: a5b5bbe47734e2443bde781a6aa64e69fdb6d785
+  GooglePlaces: 35636d86e5020cba3856eb988c09a5491de0a65a
+  GoogleSymbolUtilities: 631ee17048aa5e9ab133470d768ea997a5ef9b96
+  GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
+  MFSideMenu: fd14a2b4e44ca620e16b30fbcef3f8deeab72db1
+  NSUserDefaults-Convenience: 7b45f45f7d1b465389ffd347c78880490cc4bada
+
+PODFILE CHECKSUM: dabe88202b1dc84049ce3b1f769cd349bc3b5dc1
+
+COCOAPODS: 1.2.1
