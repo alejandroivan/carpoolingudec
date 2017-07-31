@@ -1,0 +1,24 @@
+{
+  "name": "NSUserDefaults-Convenience",
+  "version": "0.0.2",
+  "summary": "NSUserDefaults-Convenience is a category on NSUserDefaults",
+  "description": "The NSUserDefaults class provides a programmatic interface for interacting with the defaults system.\n\nThis category adds a series of miscellaneous improvements for increase speed of implementation and bolster the overall capability of the NSUserDefaults class.\n\nThese improvements include convenient macros for accessing the standard user defaults database, methods for determining if a defaults database has a given key, and synchronizing defaults with iCloud.\n\nThe category is also designed to be extensible, where applicable. For example, more options for synchronization can be added without interfering with running synchronization options.",
+  "homepage": "https://github.com/pcperini/NSUserDefaults-Convenience",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "pcperini": "pcperini@gmail.com"
+  },
+  "platforms": {
+    "ios": "6.0"
+  },
+  "source": {
+    "git": "https://github.com/andriitishchenko/NSUserDefaults-Convenience",
+    "tag": "v0.0.2"
+  },
+  "source_files": "src/*.{h,m}",
+  "exclude_files": "extendedDemo/*.*",
+  "requires_arc": true
+}
