@@ -16,6 +16,7 @@
 		2C6512401F2ED780006AB520 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C65123F1F2ED780006AB520 /* AdSupport.framework */; };
 		2C6512451F2ED85E006AB520 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6512441F2ED85E006AB520 /* LoginManager.m */; };
 		2C65124B1F2EE18C006AB520 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C65124A1F2EE18C006AB520 /* HomeViewController.m */; };
+		2C65124D1F2EE245006AB520 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C65124C1F2EE245006AB520 /* CoreLocation.framework */; };
 		752198FC3B47394575B21DF3 /* libPods-carpoolingudec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 464636D36AF42802314BC3C3 /* libPods-carpoolingudec.a */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,7 @@
 		2C6512461F2EE07A006AB520 /* GoogleMapsAPIKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoogleMapsAPIKey.h; sourceTree = SOURCE_ROOT; };
 		2C6512491F2EE18C006AB520 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = "View controllers/Home/HomeViewController.h"; sourceTree = "<group>"; };
 		2C65124A1F2EE18C006AB520 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = "View controllers/Home/HomeViewController.m"; sourceTree = "<group>"; };
+		2C65124C1F2EE245006AB520 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		464636D36AF42802314BC3C3 /* libPods-carpoolingudec.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-carpoolingudec.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFFA911C2C92D7B9A1E9E816 /* Pods-carpoolingudec.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-carpoolingudec.release.xcconfig"; path = "Pods/Target Support Files/Pods-carpoolingudec/Pods-carpoolingudec.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -45,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C65124D1F2EE245006AB520 /* CoreLocation.framework in Frameworks */,
 				2C6512401F2ED780006AB520 /* AdSupport.framework in Frameworks */,
 				752198FC3B47394575B21DF3 /* libPods-carpoolingudec.a in Frameworks */,
 			);
@@ -100,6 +103,7 @@
 		2C6512411F2ED838006AB520 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C65124C1F2EE245006AB520 /* CoreLocation.framework */,
 				2C6512421F2ED845006AB520 /* LoginManager */,
 			);
 			name = Frameworks;
@@ -185,6 +189,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 428TM66MN4;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
