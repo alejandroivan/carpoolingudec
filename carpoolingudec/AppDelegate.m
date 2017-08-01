@@ -8,12 +8,13 @@
 
 #import "AppDelegate.h"
 #import "GoogleMapsAPIKey.h"
+#import "LocationManager.h"
 @import Firebase;
 @import GoogleMaps;
 @import GooglePlaces;
 
-@interface AppDelegate () <CLLocationManagerDelegate>
-@property (strong, nonatomic) CLLocationManager *locationManager;
+@interface AppDelegate ()
+@property (weak, nonatomic) LocationManager *locationManager;
 @end
 
 @implementation AppDelegate
@@ -69,82 +70,18 @@
 
 
 #pragma mark - Location
-#pragma mark Set up
 - (void)startUpdatingLocation {
     if ( ! self.locationManager ) {
-        self.locationManager                                    = [CLLocationManager new];
-        self.locationManager.desiredAccuracy                    = kCLLocationAccuracyBest;
-        self.locationManager.distanceFilter                     = kCLDistanceFilterNone;
-        self.locationManager.allowsBackgroundLocationUpdates    = NO;
-        self.locationManager.delegate                           = self;
+        self.locationManager = [LocationManager sharedManager];
     }
     
-    switch ( [CLLocationManager authorizationStatus] ) {
-        case kCLAuthorizationStatusNotDetermined: { // No determinado, solicitar permiso
-            [self.locationManager requestAlwaysAuthorization];
-        }
-            
-        case kCLAuthorizationStatusAuthorizedAlways:
-        case kCLAuthorizationStatusAuthorizedWhenInUse: {
-            [self.locationManager startUpdatingLocation];
-            break;
-        }
-            
-        case kCLAuthorizationStatusDenied: {
-            [self showAlertWithTitle:@"Sin ubicación disponible"
-                             message:@"Has denegado el acceso a tu ubicación. Activa el acceso en Configuración, Paparazzi, Ubicación."
-                        proceedTitle:@"Ir a configuración"
-                       proceedAction:^{
-                           NSURL *settingsURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                           
-                           if ( [[UIApplication sharedApplication] canOpenURL:settingsURL] ) {
-                               [[UIApplication sharedApplication] openURL:settingsURL
-                                                                  options:@{}
-                                                        completionHandler:nil];
-                           }
-                       }
-                         cancelTitle:@"Cerrar"
-                        cancelAction:nil];
-            break;
-        }
-            
-        case kCLAuthorizationStatusRestricted: {
-            [self showAlertWithTitle:@"Sin ubicación disponible"
-                             message:@"No se puede acceder a tu ubicación por políticas de configuración del dispositivo, como controles parentales u otras."
-                        proceedTitle:nil
-                       proceedAction:nil
-                         cancelTitle:@"Cerrar"
-                        cancelAction:nil];
-            break;
-        }
-    }
+    [self.locationManager startUpdatingLocation];
 }
 
 - (void)stopUpdatingLocation {
-    if ( ! self.locationManager ) {
-        return;
-    }
-    
     [self.locationManager stopUpdatingLocation];
 }
 
-
-#pragma mark CLLocationManagerDelegate
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    CLLocation *newLocation = [locations lastObject];
-    if ( newLocation.horizontalAccuracy < 0 ) {
-        // Ignorar esta ubicación porque no es relativamente exacta
-        return;
-    }
-    
-    self.lastLocation = newLocation;
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"LOCATION_UPDATE"
-                                                        object:nil
-                                                      userInfo:@{
-                                                                 @"location" : newLocation
-                                                                 }];
-}
 
 
 

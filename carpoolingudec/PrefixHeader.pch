@@ -1,0 +1,124 @@
+//
+//  PrefixHeader.pch
+//  carpoolingudec
+//
+//  Created by Alejandro Melo Domínguez on 31-07-17.
+//  Copyright © 2017 Alejandro Melo Domínguez. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+
+#pragma mark - Common imports
+#import "AppDelegate.h"
+#import <NSUserDefaults-Convenience/NSUserDefaults+Convenience.h>
+
+
+
+
+
+
+
+
+#pragma mark - Common wrappers
+
+#ifndef TOGGLE_SIDEMENU_LEFT
+#define TOGGLE_SIDEMENU_LEFT()   [[(AppDelegate *)[[UIApplication sharedApplication] delegate] sideMenuContainer] toggleLeftSideMenuCompletion:nil]
+#endif
+
+#ifndef TOGGLE_SIDEMENU_RIGHT
+#define TOGGLE_SIDEMENU_RIGHT()   [[(AppDelegate *)[[UIApplication sharedApplication] delegate] sideMenuContainer] toggleRightSideMenuCompletion:nil]
+#endif
+
+
+#ifndef GET_SIDEMENU
+#define GET_SIDEMENU()      ( (MFSideMenuContainerViewController *) [GET_APPDELEGATE() sideMenuContainer] )
+#endif
+
+#ifndef GET_APPDELEGATE
+#define GET_APPDELEGATE()   (AppDelegate *) [[UIApplication sharedApplication] delegate]
+#endif
+
+#ifndef GET_ROOTVIEWCONTROLLER
+#define GET_ROOTVIEWCONTROLLER() (id) [[GET_APPDELEGATE() window] rootViewController]
+#endif
+
+#ifndef GET_STORYBOARD
+#define GET_STORYBOARD()    ( (UIViewController *)( (UINavigationController *)self.sideMenuContainer.centerViewController ).viewControllers[0] ).storyboard
+#endif
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - Device constants
+
+/*
+ * CONSTANTES PARA CALCULAR Y COMPARAR VERSIONES DE IOS
+ */
+#define SYSTEM_VERSION_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
+
+
+/*
+ * DETECCION DE DISPOSITIVO EN BASE A TAMAÑOS DE PANTALLA
+ */
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
+
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+
+#define IS_IPHONE_4_OR_LESS (IS_IPHONE && SCREEN_MAX_LENGTH < 568.0)
+#define IS_IPHONE_5 (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
+
+
+
+
+
+
+
+
+
+#pragma mark - Debug logging
+#ifdef DEBUG
+
+#   define NSFullLog(FORMAT, ...) {\
+NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];\
+[dateFormatter setDateStyle:NSDateFormatterMediumStyle];\
+[dateFormatter setTimeStyle:NSDateFormatterShortStyle];\
+[dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];\
+NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];\
+fprintf(stderr,"<%s> %s\n", [dateString UTF8String], [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);\
+}
+#   define LOG_FULL(text, ...) NSFullLog((@"%s(%d) " text), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#   define LOG(text, ...) NSFullLog((@"%s(%d) " text), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+
+#else
+
+#   define LOG(...)
+
+#endif
+
+#endif /* PrefixHeader_pch */
