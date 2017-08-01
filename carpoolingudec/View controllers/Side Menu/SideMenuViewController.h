@@ -1,5 +1,5 @@
 //
-//  ActivityIndicatorViewController.h
+//  SideMenuViewController.h
 //  carpoolingudec
 //
 //  Created by Alejandro Melo Domínguez on 31-07-17.
@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ActivityIndicatorViewController : UIViewController
-
-- (void)showIndicator;
-- (void)hideIndicator;
+@interface SideMenuViewController : UIViewController
 
 @end

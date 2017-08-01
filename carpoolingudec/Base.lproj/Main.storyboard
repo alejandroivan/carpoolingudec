@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
+        <!--Carpooling UdeC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" sceneMemberID="viewController">
@@ -34,21 +34,47 @@
                             <constraint firstAttribute="trailing" secondItem="Xl4-wz-4Np" secondAttribute="trailing" id="fuf-sZ-uIy"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="vN2-Ci-TUF"/>
+                    <navigationItem key="navigationItem" title="Carpooling UdeC" id="vN2-Ci-TUF">
+                        <barButtonItem key="backBarButtonItem" title=" " id="5tl-fd-BwC"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="Xl4-wz-4Np" id="0Qd-Ck-xJC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="991" y="758"/>
+            <point key="canvasLocation" x="1928.8" y="757.87106446776613"/>
+        </scene>
+        <!--Side Menu View Controller-->
+        <scene sceneID="gCt-rb-xsi">
+            <objects>
+                <viewController id="Q9L-Nw-lbY" customClass="SideMenuViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="edr-39-kbT"/>
+                        <viewControllerLayoutGuide type="bottom" id="qdM-rc-qLD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sWe-iG-8hQ">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2Fw-nA-yBy">
+                        <barButtonItem key="backBarButtonItem" title=" " id="jey-XE-HiG"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="CHn-4K-DXZ" kind="custom" identifier="HomeSegue" customClass="SideMenuSegue" id="xdS-md-LSb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fm6-ya-2pX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-516" y="758"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RSl-p7-bMS">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CHn-4K-DXZ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="QMt-4E-4ND">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="QMt-4E-4ND">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.2196078431372549" blue="0.396078431372549" alpha="1" colorSpace="calibratedRGB"/>
@@ -63,7 +89,38 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ui2-NA-G3u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="758.77061469265368"/>
+            <point key="canvasLocation" x="972" y="757.87106446776613"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ikS-g4-Gmh">
+            <objects>
+                <navigationController storyboardIdentifier="SideMenuNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="qv0-PB-99y" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="ggK-kZ-BxJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.0" green="0.21960784310000001" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Q9L-Nw-lbY" kind="relationship" relationship="rootViewController" id="xhT-Lr-Vrz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vHk-vy-Bho" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1454" y="758"/>
+        </scene>
+        <!--LoginNavigationController-->
+        <scene sceneID="35T-rK-HKI">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="LoginNavigationController" storyboardName="Login" referencedIdentifier="LoginNavigationController" id="v1v-Xt-NxJ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PA8-5X-Z6w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1455" y="382"/>
         </scene>
     </scenes>
 </document>

@@ -7,8 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "LoginViewController.h"
 #import "GoogleMapsAPIKey.h"
+#import "HomeViewController.h"
 #import "LocationManager.h"
+#import "LoginManager.h"
 @import Firebase;
 @import GoogleMaps;
 @import GooglePlaces;
@@ -26,8 +29,61 @@
     [GMSServices provideAPIKey:kGoogleMapsAPIKey];
     [GMSPlacesClient provideAPIKey:kGoogleMapsAPIKey];
     
-    // Comenzar a obtener la ubicación en todo momento
+    /*
+     LocationManager
+     */
     [self startUpdatingLocation];
+    
+    
+    /*
+     Side Menu
+     */
+    LOG(@"[%@] Setting up side menu...", NSStringFromClass(self.class));
+    UINavigationController *leftMenuNavigationController    = [[GET_ROOTVIEWCONTROLLER() storyboard] instantiateViewControllerWithIdentifier:@"SideMenuNavigationController"];
+    UINavigationController *rightMenuNavigationController   = nil;
+    
+    MFSideMenuContainerViewController *container = [MFSideMenuContainerViewController containerWithCenterViewController:GET_ROOTVIEWCONTROLLER()
+                                                                                                 leftMenuViewController:leftMenuNavigationController
+                                                                                                rightMenuViewController:rightMenuNavigationController];
+    
+    container.menuSlideAnimationEnabled = YES;
+    container.menuSlideAnimationFactor  = 3.0f;
+    container.shadow.enabled            = YES;
+    container.shadow.radius             = 1.0f;
+    container.shadow.color              = [UIColor blackColor];
+    container.shadow.opacity            = 0.75f;
+    
+    container.menuWidth                 = [[UIScreen mainScreen] bounds].size.width - 62.0f;
+    
+    self.sideMenuContainer              = container;
+    self.window.rootViewController      = container;
+    
+    
+    
+    
+    
+    
+    /*
+     Login Screen
+     */
+    ActivityIndicatorViewController *activityIndicatorViewController;
+    if ( [self.window.rootViewController isKindOfClass:[ActivityIndicatorViewController class]] ) {
+        activityIndicatorViewController = (ActivityIndicatorViewController *) self.window.rootViewController;
+    }
+    else {
+        activityIndicatorViewController = (ActivityIndicatorViewController *) [[(UINavigationController *)[self.sideMenuContainer centerViewController] viewControllers] lastObject];
+    }
+    
+    [activityIndicatorViewController showIndicator];
+    
+    [[LoginManager sharedManager] revalidateSessionFromCredentialsWithCompletionHandler:^(BOOL loggedIn, BOOL withCredentials) {
+        [activityIndicatorViewController hideIndicator];
+        
+        if ( ! loggedIn ) {
+            [self showLoginScreen:withCredentials];
+        }
+    }];
+    
     
     return YES;
 }
@@ -80,6 +136,128 @@
 
 - (void)stopUpdatingLocation {
     [self.locationManager stopUpdatingLocation];
+}
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - Login
+static UIViewController *loginScreenViewController;
+static BOOL loginIsShown = NO;
+
+- (void)showLoginScreen:(BOOL)animated {
+    LOG(@"animated=%@", animated ? @"YES" : @"NO");
+    
+    UIViewController *parentVC  = GET_ROOTVIEWCONTROLLER();
+    parentVC                    = [parentVC isKindOfClass:[UINavigationController class]] ? parentVC : [GET_SIDEMENU() centerViewController];
+    
+    if ( ! loginScreenViewController ) {
+        loginScreenViewController               = [parentVC.storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
+        loginScreenViewController.view.frame    = parentVC.view.frame;
+    }
+    
+    if ( ! loginIsShown ) {
+        loginIsShown = YES;
+        
+        [GET_SIDEMENU() setPanMode:MFSideMenuPanModeNone];
+        
+        if ( ! animated ) {
+            
+            [loginScreenViewController willMoveToParentViewController:parentVC];
+            
+            [loginScreenViewController.view setAlpha:1.0];
+            [parentVC.view addSubview:loginScreenViewController.view];
+            [parentVC.view bringSubviewToFront:loginScreenViewController.view];
+            
+            [loginScreenViewController didMoveToParentViewController:parentVC];
+            
+        }
+        else {
+            
+            [loginScreenViewController willMoveToParentViewController:parentVC];
+            
+            [loginScreenViewController.view setAlpha:0.0];
+            [parentVC.view addSubview:loginScreenViewController.view];
+            [parentVC.view bringSubviewToFront:loginScreenViewController.view];
+            
+            [UIView animateWithDuration:0.5
+                             animations:^{
+                                 loginScreenViewController.view.alpha = 1.0;
+                             }
+                             completion:^(BOOL finished) {
+                                 [loginScreenViewController didMoveToParentViewController:parentVC];
+                             }];
+            
+        }
+        
+        [self stopUpdatingLocation];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didGetLoginStatusUpdate:)
+                                                     name:@"LOGIN_STATUS"
+                                                   object:nil];
+    }
+}
+
+
+- (void)hideLoginScreen:(BOOL)animated {
+    LOG(@"animated=%@", animated ? @"YES" : @"NO");
+    
+    if ( ! loginScreenViewController || ! loginIsShown ) {
+        return;
+    }
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:@"LOGIN_STATUS"
+                                                  object:nil];
+    
+    if ( ! animated ) {
+        
+        [loginScreenViewController willMoveToParentViewController:nil];
+        [loginScreenViewController.view setAlpha:1.0];
+        [loginScreenViewController.view removeFromSuperview];
+        [loginScreenViewController didMoveToParentViewController:nil];
+        [GET_SIDEMENU() setPanMode:MFSideMenuPanModeDefault];
+        
+        loginScreenViewController = nil;
+        loginIsShown = NO;
+        
+    }
+    else {
+        
+        [loginScreenViewController willMoveToParentViewController:nil];
+        [loginScreenViewController.view setAlpha:1.0];
+        
+        [UIView animateWithDuration:0.5f
+                         animations:^{
+                             loginScreenViewController.view.alpha = 0.0;
+                         }
+                         completion:^(BOOL finished) {
+                             [loginScreenViewController didMoveToParentViewController:nil];
+                             [loginScreenViewController.view removeFromSuperview];
+                             [GET_SIDEMENU() setPanMode:MFSideMenuPanModeDefault];
+                             
+                             loginScreenViewController = nil;
+                             loginIsShown = NO;
+                         }];
+        
+    }
+    
+}
+
+- (void)didGetLoginStatusUpdate:(NSNotification *)notification {
+    NSDictionary *info  = notification.userInfo;
+    BOOL loggedIn       = [info[@"logged_in"] boolValue];
+    
+    if ( loggedIn ) {
+        [self hideLoginScreen:YES];
+    }
 }
 
 
@@ -157,8 +335,6 @@
                                           animated:YES
                                         completion:nil];
     }];
-    
 }
-
 
 @end

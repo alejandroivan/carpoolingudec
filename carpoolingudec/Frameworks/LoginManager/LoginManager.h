@@ -21,8 +21,15 @@
 + (instancetype _Nonnull)sharedManager;
 
 
+/*
+ Métodos para iniciar/cerrar sesión
+ */
 - (void)loginWithUsername:(NSString * _Nonnull)username password:(NSString * _Nonnull)password completionHandler:(void (^ _Nonnull)(BOOL loggedIn, NSError * _Nullable error, NSString * _Nullable response))completionHandler;
 - (void)logoutWithCompletionHandler:(void (^ _Nullable)(BOOL loggedIn, NSError * _Nullable error, NSString * _Nullable response))completionHandler;
 
+/*
+ Método para revalidar sesión. Se utiliza para validar al volver a abrir la app.
+ */
+- (void)revalidateSessionFromCredentialsWithCompletionHandler:(void (^ _Nonnull)(BOOL loggedIn, BOOL withCredentials))completionHandler;
 
 @end

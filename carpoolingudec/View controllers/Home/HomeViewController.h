@@ -6,8 +6,8 @@
 //  Copyright © 2017 Alejandro Melo Domínguez. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "LeftMenuItemViewController.h"
 
-@interface HomeViewController : UIViewController
+@interface HomeViewController : LeftMenuItemViewController
 
 @end

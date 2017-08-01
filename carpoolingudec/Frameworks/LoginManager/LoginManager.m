@@ -77,6 +77,7 @@ static LoginManager *__loginManagerCarpoolingUdeC;
 
 @implementation LoginManager {
     NSString *_tempUsername;
+    NSString *_tempPassword;
 }
 
 
@@ -141,6 +142,9 @@ static LoginManager *__loginManagerCarpoolingUdeC;
  */
 - (void)loginWithUsername:(NSString * _Nonnull)username password:(NSString * _Nonnull)password completionHandler:(void (^ _Nonnull)(BOOL loggedIn, NSError * _Nullable error, NSString * _Nullable response))completionHandler {
     
+    _tempUsername = nil;
+    _tempPassword = nil;
+    
     [self sendLoginPostWithUsername:username
                            password:password
                   completionHandler:completionHandler];
@@ -169,6 +173,7 @@ static LoginManager *__loginManagerCarpoolingUdeC;
     
     if ( ! requestError ) {
         _tempUsername = username;
+        _tempPassword = password;
         
         void (^completionHandlerWithClearingUsername)(BOOL loggedIn, NSError * _Nullable error, NSString * _Nullable response) = ^void(BOOL loggedIn, NSError * _Nullable error, NSString * _Nullable response) {
             
@@ -178,7 +183,6 @@ static LoginManager *__loginManagerCarpoolingUdeC;
                 self.username = _tempUsername;
             }
             
-            _tempUsername = nil;
             completionHandler(loggedIn, error, response);
         };
         
@@ -212,6 +216,11 @@ static LoginManager *__loginManagerCarpoolingUdeC;
                                                              }];
         [task resume];
         
+    }
+    else {
+        LOG(@"Error al armar el NSURLRequest.");
+        _tempUsername = nil;
+        _tempPassword = nil;
     }
     
 }
@@ -256,6 +265,9 @@ static LoginManager *__loginManagerCarpoolingUdeC;
                                                                  if ( self.debugEnabled ) {
                                                                      NSLog(@"[%@] GET error: %@", NSStringFromClass(self.class), error.localizedDescription);
                                                                  }
+                                                                 
+                                                                 _tempUsername = nil;
+                                                                 _tempPassword = nil;
                                                                  
                                                                  completionHandler(NO, error, @"El servidor UdeC no responde a la petición GET.");
                                                              }
@@ -310,9 +322,17 @@ static LoginManager *__loginManagerCarpoolingUdeC;
                                                                                                                             error:&responseParserError];
                                                              
                                                              if ( ! responseParserError ) {
-                                                                 
+                                                                 LOG(@"RESPONSE: %@", responseData);
                                                                  NSString *message  = responseData[@"message"];
                                                                  BOOL loggedIn      = [responseData[@"logged_in"] boolValue];
+                                                                 
+//                                                                 LOG(@"\n\n\nUsername: %@\nPassword: %@\n\n\n", _tempUsername, _tempPassword);
+                                                                 
+                                                                 [self saveCredentialsWithUsername:_tempUsername
+                                                                                          password:_tempPassword];
+                                                                 
+                                                                 _tempUsername = nil;
+                                                                 _tempPassword = nil;
                                                                  
                                                                  if ( completionHandler ) {
                                                                      completionHandler(loggedIn, error, message);
@@ -320,6 +340,9 @@ static LoginManager *__loginManagerCarpoolingUdeC;
                                                                  
                                                              }
                                                              else {
+                                                                 
+                                                                 _tempUsername = nil;
+                                                                 _tempPassword = nil;
                                                                  
                                                                  if ( completionHandler ) {
                                                                      completionHandler(NO, responseParserError, responseParserError.localizedDescription);
@@ -403,21 +426,66 @@ static LoginManager *__loginManagerCarpoolingUdeC;
                                                                      self.sessionManager = nil;
                                                                  }
                                                                  
+                                                                 _tempUsername = nil;
+                                                                 _tempPassword = nil;
                                                                  
                                                                  if ( completionHandler ) {
                                                                      completionHandler(loggedIn, nil, message);
                                                                  }
                                                              }
                                                              else {
+                                                                 _tempUsername = nil;
+                                                                 _tempPassword = nil;
+                                                                 
                                                                  if ( completionHandler ) {
                                                                      completionHandler(self.loggedIn, error, error.localizedDescription);
                                                                  }
                                                              }
                                                              
+                                                             [self clearCredentials];
                                                          }];
     
     [task resume];
     
+}
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark - Session validation
+- (void)revalidateSessionFromCredentialsWithCompletionHandler:(void (^ _Nonnull)(BOOL loggedIn, BOOL withCredentials))completionHandler {
+    NSString *username = [self credentialForKey:@"username"];
+    NSString *password = [self credentialForKey:@"password"];
+    
+    if ( ! username || ! password ) {
+        completionHandler(NO, NO);
+        return;
+    }
+    
+    [self loginWithUsername:username
+                   password:password
+          completionHandler:^(BOOL loggedIn, NSError * _Nullable error, NSString * _Nullable response) {
+              _tempUsername = nil;
+              _tempPassword = nil;
+              
+              if ( ! loggedIn ) {
+                  [self clearCredentials];
+                  
+                  self.loggedIn = NO;
+                  self.username = nil;
+              }
+              
+              if ( completionHandler ) {
+                  completionHandler(loggedIn, YES);
+              }
+          }];
 }
 
 
@@ -452,4 +520,39 @@ static LoginManager *__loginManagerCarpoolingUdeC;
     return _sessionManager;
 }
 
+
+
+
+
+
+
+
+
+
+
+#pragma mark - Credentials persistence
+
+- (void)saveCredentialsWithUsername:(NSString * _Nonnull)username password:(NSString * _Nonnull)password {
+    [NSStandardUserDefaults setObject:username
+                               forKey:@"user_username"];
+    [NSStandardUserDefaults setObject:password
+                               forKey:@"user_password"];
+    
+    [NSStandardUserDefaults synchronize];
+}
+
+- (NSString *)credentialForKey:(NSString *)key {
+    if ( ! [key isEqualToString:@"username"] && ! [key isEqualToString:@"password"] ) {
+        LOG(@"Invalid key for accessing credentials.");
+        return nil;
+    }
+    
+    return [NSStandardUserDefaults stringForKey:[@"user_" stringByAppendingString:key]];
+}
+
+- (void)clearCredentials {
+    [NSStandardUserDefaults removeObjectForKey:@"user_username"];
+    [NSStandardUserDefaults removeObjectForKey:@"user_password"];
+    [NSStandardUserDefaults synchronize];
+}
 @end
