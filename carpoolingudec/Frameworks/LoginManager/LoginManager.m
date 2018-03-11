@@ -51,6 +51,7 @@ static LoginManager *__loginManagerCarpoolingUdeC;
 
 
 
+
 @interface LoginManager ()
 /*
  AFNetworking
@@ -329,17 +330,53 @@ static LoginManager *__loginManagerCarpoolingUdeC;
                                                                  LOG(@"RESPONSE: %@", responseData);
                                                                  NSString *message  = responseData[@"message"];
                                                                  BOOL loggedIn      = [responseData[@"logged_in"] boolValue];
+                                                                 NSInteger code     = [responseData[@"code"] integerValue];
                                                                  
 //                                                                 LOG(@"\n\n\nUsername: %@\nPassword: %@\n\n\n", _tempUsername, _tempPassword);
                                                                  
-                                                                 [self saveCredentialsWithUsername:_tempUsername
-                                                                                          password:_tempPassword];
-                                                                 
-                                                                 _tempUsername = nil;
-                                                                 _tempPassword = nil;
-                                                                 
-                                                                 if ( completionHandler ) {
-                                                                     completionHandler(loggedIn, error, message);
+                                                                 if ( loggedIn ) {
+                                                                     [self saveCredentialsWithUsername:_tempUsername
+                                                                                              password:_tempPassword];
+                                                                     
+                                                                     _tempUsername = nil;
+                                                                     _tempPassword = nil;
+                                                                     
+                                                                     if ( completionHandler ) {
+                                                                         completionHandler(loggedIn, error, message);
+                                                                     }
+                                                                 }
+                                                                 else if ( code == 428 ) {
+                                                                     
+                                                                     _tempUsername = nil;
+                                                                     _tempPassword = nil;
+                                                                     
+                                                                     if ( completionHandler ) {
+                                                                         NSError *missingDataError = [NSError errorWithDomain:kLoginManagerErrorDomain
+                                                                                                                         code:code
+                                                                                                                     userInfo:@{
+                                                                                                                                NSLocalizedFailureReasonErrorKey: responseData[@"message"] ?: @"",
+                                                                                                                                NSLocalizedDescriptionKey: responseData[@"message"] ?: @"",
+                                                                                                                                NSLocalizedRecoverySuggestionErrorKey: @"Regístrate con todos los datos solicitados."
+                                                                                                                                }];
+                                                                         
+                                                                         if ( completionHandler ) {
+                                                                             completionHandler(NO, missingDataError, responseData[@"message"]);
+                                                                         }
+                                                                     }
+                                                                     
+                                                                 }
+                                                                 else {
+                                                                     NSError *wrongAccountError = [NSError errorWithDomain:kLoginManagerErrorDomain
+                                                                                                                      code:code
+                                                                                                                  userInfo:@{
+                                                                                                                             NSLocalizedFailureReasonErrorKey: responseData[@"message"] ?: @"",
+                                                                                                                             NSLocalizedDescriptionKey: responseData[@"message"] ?: @"",
+                                                                                                                             NSLocalizedRecoverySuggestionErrorKey: @"Verifica tus datos de inicio de sesión e inténtalo nuevamente."
+                                                                                                                             }];
+                                                                     
+                                                                     if ( completionHandler ) {
+                                                                         completionHandler(NO, wrongAccountError, responseData[@"message"]);
+                                                                     }
                                                                  }
                                                                  
                                                              }

@@ -65,12 +65,25 @@
                           [GET_APPDELEGATE() hideLoginScreen:YES];
                       }
                       else {
-                          [GET_APPDELEGATE() showAlertWithTitle:@"Error al iniciar sesión"
-                                                        message:[NSString stringWithFormat:@"No se ha podido iniciar sesión. %@", response]
-                                                   proceedTitle:nil
-                                                  proceedAction:nil
-                                                    cancelTitle:@"Cerrar"
-                                                   cancelAction:nil];
+                          
+                          if ( [error.domain isEqualToString:kLoginManagerErrorDomain] && error.code == kLoginManagerErrorNeedsRegistrationCode ) {
+                              [GET_APPDELEGATE() showAlertWithTitle:@"No estás registrado"
+                                                            message:@"Se necesita que proveas información adicional para poder utilizar este servicio. Regístrate para continuar."
+                                                       proceedTitle:@"Registrarme"
+                                                      proceedAction:^{
+                                                          LOG(@"REGISTRO!");
+                                                      }
+                                                        cancelTitle:@"Cancelar"
+                                                       cancelAction:nil];
+                          }
+                          else {
+                              [GET_APPDELEGATE() showAlertWithTitle:@"Error al iniciar sesión"
+                                                            message:[NSString stringWithFormat:@"No se ha podido iniciar sesión. %@", response]
+                                                       proceedTitle:nil
+                                                      proceedAction:nil
+                                                        cancelTitle:@"Cerrar"
+                                                       cancelAction:nil];
+                          }
                       }
                   }];
 }
