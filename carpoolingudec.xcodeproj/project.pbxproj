@@ -26,10 +26,12 @@
 		2CADDAE91F30251700814820 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CADDAE81F30251700814820 /* SideMenuViewController.m */; };
 		2CADDAEF1F30275100814820 /* UIViewController+KeyboardHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CADDAEE1F30275100814820 /* UIViewController+KeyboardHelper.m */; };
 		752198FC3B47394575B21DF3 /* libPods-carpoolingudec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 464636D36AF42802314BC3C3 /* libPods-carpoolingudec.a */; };
+		81C938979226DD73910189E5 /* libPods-carpoolingudec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 243487861E5CC1BEAAB3C11A /* libPods-carpoolingudec.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		057826A5B3142F604DED9A2E /* Pods-carpoolingudec.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-carpoolingudec.debug.xcconfig"; path = "Pods/Target Support Files/Pods-carpoolingudec/Pods-carpoolingudec.debug.xcconfig"; sourceTree = "<group>"; };
+		243487861E5CC1BEAAB3C11A /* libPods-carpoolingudec.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-carpoolingudec.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C6512211F2ED51E006AB520 /* carpoolingudec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = carpoolingudec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C6512251F2ED51E006AB520 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2C6512271F2ED51E006AB520 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -62,6 +64,8 @@
 		2CADDAE81F30251700814820 /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SideMenuViewController.m; path = "View controllers/Side Menu/SideMenuViewController.m"; sourceTree = "<group>"; };
 		2CADDAED1F30275100814820 /* UIViewController+KeyboardHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+KeyboardHelper.h"; path = "carpoolingudec/Frameworks/UIViewController+KeyboardHelper/UIViewController+KeyboardHelper.h"; sourceTree = "<group>"; };
 		2CADDAEE1F30275100814820 /* UIViewController+KeyboardHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+KeyboardHelper.m"; path = "carpoolingudec/Frameworks/UIViewController+KeyboardHelper/UIViewController+KeyboardHelper.m"; sourceTree = "<group>"; };
+		2CD4DE452054BFF9009B9330 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		2CD4DE462054BFF9009B9330 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		464636D36AF42802314BC3C3 /* libPods-carpoolingudec.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-carpoolingudec.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFFA911C2C92D7B9A1E9E816 /* Pods-carpoolingudec.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-carpoolingudec.release.xcconfig"; path = "Pods/Target Support Files/Pods-carpoolingudec/Pods-carpoolingudec.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,6 +78,7 @@
 				2C65124D1F2EE245006AB520 /* CoreLocation.framework in Frameworks */,
 				2C6512401F2ED780006AB520 /* AdSupport.framework in Frameworks */,
 				752198FC3B47394575B21DF3 /* libPods-carpoolingudec.a in Frameworks */,
+				81C938979226DD73910189E5 /* libPods-carpoolingudec.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +138,7 @@
 				2CADDACC1F2FEE6E00814820 /* LocationManager */,
 				2C6512421F2ED845006AB520 /* LoginManager */,
 				2CADDAEC1F30274000814820 /* UIViewController+KeyboardHelper */,
+				243487861E5CC1BEAAB3C11A /* libPods-carpoolingudec.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -275,7 +281,7 @@
 				TargetAttributes = {
 					2C6512201F2ED51E006AB520 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 428TM66MN4;
+						DevelopmentTeam = 99QSH5L9VP;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -290,7 +296,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = 2C6512181F2ED51E006AB520;
@@ -340,13 +345,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-carpoolingudec-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CB10DADC47CAC6876B9F108C /* [CP] Copy Pods Resources */ = {
@@ -355,9 +363,13 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-carpoolingudec/Pods-carpoolingudec-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Versions/A/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -392,6 +404,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2C65122E1F2ED51E006AB520 /* Base */,
+				2CD4DE452054BFF9009B9330 /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -400,6 +413,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2C6512331F2ED51E006AB520 /* Base */,
+				2CD4DE462054BFF9009B9330 /* es */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -411,6 +425,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -459,6 +474,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -502,7 +518,7 @@
 			baseConfigurationReference = 057826A5B3142F604DED9A2E /* Pods-carpoolingudec.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 428TM66MN4;
+				DEVELOPMENT_TEAM = 99QSH5L9VP;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PRODUCT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = carpoolingudec/Info.plist;
@@ -517,7 +533,7 @@
 			baseConfigurationReference = AFFA911C2C92D7B9A1E9E816 /* Pods-carpoolingudec.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 428TM66MN4;
+				DEVELOPMENT_TEAM = 99QSH5L9VP;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/$(PRODUCT_NAME)/PrefixHeader.pch";
 				INFOPLIST_FILE = carpoolingudec/Info.plist;

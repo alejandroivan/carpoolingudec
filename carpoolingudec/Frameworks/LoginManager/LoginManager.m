@@ -26,8 +26,8 @@ static BOOL kUdeCAlumnosLoginDebuggingEnabledDefaultValue = NO; // Valor por def
 // URLs
 NSString * const kURLStringLoginPost            = @"http://m.udec.cl/login-response.php";
 NSString * const kURLStringLoginGet             = @"http://m.udec.cl/infodaMovil.php";
-NSString * const kURLStringResponseParser       = @"http://local.penquistas.cl/index.php/account/check_login";
-NSString * const kURLStringLogoutGet            = @"http://local.penquistas.cl/index.php/account/logout";
+NSString * const kURLStringResponseParser       = @"https://local.penquistas.cl/index.php/account/check_login";
+NSString * const kURLStringLogoutGet            = @"https://local.penquistas.cl/index.php/account/logout";
 
 // Form fields (POST)
 NSStringEncoding const kLoginPostRequestEncoding        = NSUTF8StringEncoding;
@@ -292,7 +292,11 @@ static LoginManager *__loginManagerCarpoolingUdeC;
     // para parsearlo y obtener estado de login.
     
     NSError *requestError;
+    
     AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
+    [serializer setValue:@"application/x-www-form-urlencoded; charset=UTF-8"
+      forHTTPHeaderField:@"Content-Type"];
+    
     NSURLRequest *postRequest           = [serializer requestWithMethod:@"POST"
                                                               URLString:kURLStringResponseParser
                                                              parameters:@{
