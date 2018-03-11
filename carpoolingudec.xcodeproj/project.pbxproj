@@ -26,7 +26,6 @@
 		2CADDAE91F30251700814820 /* SideMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CADDAE81F30251700814820 /* SideMenuViewController.m */; };
 		2CADDAEF1F30275100814820 /* UIViewController+KeyboardHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CADDAEE1F30275100814820 /* UIViewController+KeyboardHelper.m */; };
 		752198FC3B47394575B21DF3 /* libPods-carpoolingudec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 464636D36AF42802314BC3C3 /* libPods-carpoolingudec.a */; };
-		81C938979226DD73910189E5 /* libPods-carpoolingudec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 243487861E5CC1BEAAB3C11A /* libPods-carpoolingudec.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +65,9 @@
 		2CADDAEE1F30275100814820 /* UIViewController+KeyboardHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+KeyboardHelper.m"; path = "carpoolingudec/Frameworks/UIViewController+KeyboardHelper/UIViewController+KeyboardHelper.m"; sourceTree = "<group>"; };
 		2CD4DE452054BFF9009B9330 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		2CD4DE462054BFF9009B9330 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		2CD4DE4B2054C947009B9330 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreLocation.framework; sourceTree = "<group>"; };
+		2CD4DE4C2054CA21009B9330 /* LocationManagerUpdatesDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocationManagerUpdatesDelegate.h; path = carpoolingudec/Frameworks/LocationManager/LocationManagerUpdatesDelegate.h; sourceTree = "<group>"; };
+		2CD4DE4D2054CAC4009B9330 /* LocationManagerAuthorizationStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocationManagerAuthorizationStatus.h; path = carpoolingudec/Frameworks/LocationManager/LocationManagerAuthorizationStatus.h; sourceTree = "<group>"; };
 		464636D36AF42802314BC3C3 /* libPods-carpoolingudec.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-carpoolingudec.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFFA911C2C92D7B9A1E9E816 /* Pods-carpoolingudec.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-carpoolingudec.release.xcconfig"; path = "Pods/Target Support Files/Pods-carpoolingudec/Pods-carpoolingudec.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,7 +80,6 @@
 				2C65124D1F2EE245006AB520 /* CoreLocation.framework in Frameworks */,
 				2C6512401F2ED780006AB520 /* AdSupport.framework in Frameworks */,
 				752198FC3B47394575B21DF3 /* libPods-carpoolingudec.a in Frameworks */,
-				81C938979226DD73910189E5 /* libPods-carpoolingudec.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +178,8 @@
 			children = (
 				2CADDACD1F2FEE8700814820 /* LocationManager.h */,
 				2CADDACE1F2FEE8700814820 /* LocationManager.m */,
+				2CD4DE4C2054CA21009B9330 /* LocationManagerUpdatesDelegate.h */,
+				2CD4DE4D2054CAC4009B9330 /* LocationManagerAuthorizationStatus.h */,
 			);
 			name = LocationManager;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				2C65123F1F2ED780006AB520 /* AdSupport.framework */,
+				2CD4DE4B2054C947009B9330 /* CoreLocation.framework */,
 				464636D36AF42802314BC3C3 /* libPods-carpoolingudec.a */,
 			);
 			name = Frameworks;
@@ -276,7 +280,7 @@
 		2C6512191F2ED51E006AB520 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Alejandro Melo Domínguez";
 				TargetAttributes = {
 					2C6512201F2ED51E006AB520 = {
@@ -432,7 +436,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -440,7 +446,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -481,7 +491,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -489,7 +501,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

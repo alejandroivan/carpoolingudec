@@ -28,6 +28,7 @@ static LocationManager *__locationManagerSharedInstance;
 @property (strong, nonatomic) CLLocation *location;
 
 @property (assign, nonatomic) BOOL isActive;
+@property (assign, nonatomic) LocationManagerAuthorizationStatus authorizationStatus;
 @end
 
 
@@ -67,6 +68,8 @@ static LocationManager *__locationManagerSharedInstance;
         
         self.isActive                                           = NO;
         self.notifyUsingNotificationCenter                      = YES;
+        
+        [self updateAuthorizationStatus];
     }
     
     return self;
@@ -123,6 +126,38 @@ static LocationManager *__locationManagerSharedInstance;
 
 
 
+#pragma mark - Authorization status
+- (void)updateAuthorizationStatus {
+    switch ( [CLLocationManager authorizationStatus] ) {
+        case kCLAuthorizationStatusAuthorizedAlways:
+        case kCLAuthorizationStatusAuthorizedWhenInUse: {
+            self.authorizationStatus = LocationManagerAuthorizationStatusAuthorized;
+            break;
+        }
+            
+        case kCLAuthorizationStatusDenied:
+        case kCLAuthorizationStatusRestricted: {
+            self.authorizationStatus = LocationManagerAuthorizationStatusNotAuthorized;
+            break;
+        }
+            
+        default:
+        case kCLAuthorizationStatusNotDetermined: {
+            self.authorizationStatus = LocationManagerAuthorizationStatusUndetermined;
+            break;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
 
 
 #pragma mark - Permissions
@@ -158,6 +193,9 @@ void (^__waitingForPermissionsCompletionHandler)(BOOL authorized) = nil;
             break;
             
     }
+    
+    [self updateAuthorizationStatus];
+    [self.delegate locationManager:self didUpdateAuthorizationStatus:self.authorizationStatus];
 }
 
 
@@ -189,6 +227,9 @@ void (^__waitingForPermissionsCompletionHandler)(BOOL authorized) = nil;
                                                                      @"location" : newLocation
                                                                      }];
     }
+    
+    [self.delegate locationManager:self
+                 didUpdateLocation:newLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
@@ -203,6 +244,8 @@ void (^__waitingForPermissionsCompletionHandler)(BOOL authorized) = nil;
              Uso de localización autorizado
              */
             __waitingForPermissionsCompletionHandler(YES);
+            
+            
             break;
             
         default:

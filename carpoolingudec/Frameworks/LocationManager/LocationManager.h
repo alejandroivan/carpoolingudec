@@ -7,14 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-@import CoreLocation;
+#import <CoreLocation/CoreLocation.h>
+#import "LocationManagerAuthorizationStatus.h"
+#import "LocationManagerUpdatesDelegate.h"
+
 
 @interface LocationManager : NSObject
-
 @property (strong, nonatomic, readonly) CLLocation *location;
-
 @property (assign, nonatomic, readonly) BOOL isActive;
 @property (assign, nonatomic) BOOL notifyUsingNotificationCenter;
+
+
+@property (assign, nonatomic, readonly) LocationManagerAuthorizationStatus authorizationStatus;
+@property (weak, nonatomic) id<LocationManagerUpdatesDelegate> delegate;
 
 + (instancetype)sharedManager;
 
