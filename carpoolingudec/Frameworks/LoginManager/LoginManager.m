@@ -501,12 +501,12 @@ static LoginManager *__loginManagerCarpoolingUdeC;
 
 
 #pragma mark - Session validation
-- (void)revalidateSessionFromCredentialsWithCompletionHandler:(void (^ _Nonnull)(BOOL loggedIn, BOOL withCredentials))completionHandler {
+- (void)revalidateSessionFromCredentialsWithCompletionHandler:(void (^ _Nonnull)(BOOL loggedIn, BOOL withCredentials, NSError *error))completionHandler {
     NSString *username = [self credentialForKey:@"username"];
     NSString *password = [self credentialForKey:@"password"];
     
     if ( ! username || ! password ) {
-        completionHandler(NO, NO);
+        completionHandler(NO, NO, nil);
         return;
     }
     
@@ -524,7 +524,7 @@ static LoginManager *__loginManagerCarpoolingUdeC;
               }
               
               if ( completionHandler ) {
-                  completionHandler(loggedIn, YES);
+                  completionHandler(loggedIn, YES, error);
               }
           }];
 }

@@ -10,7 +10,7 @@
 
 
 // Error domain
-static NSString *kLoginManagerErrorDomain = @"cl.penquistas.carpoolingudec.LoginManager.ErrorDomain";
+static NSString * _Nonnull kLoginManagerErrorDomain = @"cl.penquistas.carpoolingudec.LoginManager.ErrorDomain";
 static NSInteger kLoginManagerErrorNeedsRegistrationCode = 428;
 
 
@@ -35,6 +35,6 @@ static NSInteger kLoginManagerErrorNeedsRegistrationCode = 428;
 /**
  Método para revalidar sesión. Se utiliza para validar al volver a abrir la app.
  */
-- (void)revalidateSessionFromCredentialsWithCompletionHandler:(void (^ _Nonnull)(BOOL loggedIn, BOOL withCredentials))completionHandler;
+- (void)revalidateSessionFromCredentialsWithCompletionHandler:(void (^ _Nonnull)(BOOL loggedIn, BOOL withCredentials, NSError * _Nullable error))completionHandler;
 
 @end
