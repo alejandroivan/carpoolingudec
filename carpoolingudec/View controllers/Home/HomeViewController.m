@@ -22,6 +22,11 @@
 
 @interface HomeViewController ()
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
+@property (weak, nonatomic) IBOutlet UIButton *searchButton;
+@property (weak, nonatomic) IBOutlet UIView *searchItemsContainerView;
+@property (weak, nonatomic) IBOutlet UIButton *goToHomeButton;
+@property (weak, nonatomic) IBOutlet UIButton *goToUniversityButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @end
 
 
@@ -99,6 +104,53 @@
         
         [self.mapView animateToCameraPosition:cameraPosition];
     }
+}
+
+
+
+
+
+
+
+
+
+
+#pragma mark - Go to
+#pragma mark UI
+- (IBAction)showSearch {
+    self.searchItemsContainerView.alpha     = 0.0f;
+    self.searchItemsContainerView.hidden    = NO;
+    
+    [UIView animateWithDuration:0.5f
+                     animations:^{
+                         self.searchItemsContainerView.alpha    = 1.0f;
+                         self.mapView.alpha                     = 0.1f;
+                     }
+                     completion:^(BOOL finished) {
+                         self.searchItemsContainerView.userInteractionEnabled = YES;
+                     }];
+}
+
+- (IBAction)cancelSearch {
+    self.searchItemsContainerView.userInteractionEnabled = NO;
+    
+    [UIView animateWithDuration:0.5f
+                     animations:^{
+                         self.searchItemsContainerView.alpha    = 0.0f;
+                         self.mapView.alpha                     = 1.0f;
+                     }
+                     completion:^(BOOL finished) {
+                         self.searchItemsContainerView.hidden = YES;
+                     }];
+}
+
+#pragma mark Actions
+- (IBAction)goToHome {
+    
+}
+
+- (IBAction)goToUniversity {
+    
 }
 
 @end

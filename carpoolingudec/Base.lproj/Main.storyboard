@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CHn-4K-DXZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CHn-4K-DXZ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,27 +18,121 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xl4-wz-4Np" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oa0-Hr-Fjy">
+                                <rect key="frame" x="27" y="0.0" width="320" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="Hjz-ld-jfr"/>
+                                    <constraint firstAttribute="width" constant="320" id="PHO-sd-0um"/>
+                                </constraints>
+                                <state key="normal" image="home_searchbar"/>
+                                <connections>
+                                    <action selector="showSearch" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Ge-ww-qJJ"/>
+                                </connections>
+                            </button>
+                            <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BUE-Re-mIZ" userLabel="Search Items Container">
+                                <rect key="frame" x="0.0" y="51" width="375" height="134"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="are-gK-YY8">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="Aak-Oa-8dX"/>
+                                        </constraints>
+                                        <color key="tintColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="A casa"/>
+                                        <connections>
+                                            <action selector="goToHome" destination="BYZ-38-t0r" eventType="touchUpInside" id="Rkw-aW-5QP"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2pD-Le-X6s" userLabel="Separator">
+                                        <rect key="frame" x="0.0" y="44" width="375" height="1"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="fOw-Uy-bTi"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezU-zb-jXh">
+                                        <rect key="frame" x="0.0" y="45" width="375" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="rqp-Eb-UGX"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                        <color key="tintColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="A la Universidad de Concepción"/>
+                                        <connections>
+                                            <action selector="goToUniversity" destination="BYZ-38-t0r" eventType="touchUpInside" id="fmw-PJ-1Kn"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htn-xY-Qbb" userLabel="Separator">
+                                        <rect key="frame" x="0.0" y="89" width="375" height="1"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="9Nl-v4-R6k"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aoa-B7-sqF">
+                                        <rect key="frame" x="0.0" y="90" width="375" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="JEi-xo-JFQ"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Cancelar"/>
+                                        <connections>
+                                            <action selector="cancelSearch" destination="BYZ-38-t0r" eventType="touchUpInside" id="oZZ-Ry-BIE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.10980392156862745" green="0.10980392156862745" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="htn-xY-Qbb" firstAttribute="leading" secondItem="BUE-Re-mIZ" secondAttribute="leading" id="ChA-ea-x5d"/>
+                                    <constraint firstItem="Aoa-B7-sqF" firstAttribute="leading" secondItem="BUE-Re-mIZ" secondAttribute="leading" id="EY2-PH-OlU"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" id="FVr-X4-aol"/>
+                                    <constraint firstItem="2pD-Le-X6s" firstAttribute="top" secondItem="are-gK-YY8" secondAttribute="bottom" id="Ivc-sB-MDt"/>
+                                    <constraint firstAttribute="trailing" secondItem="htn-xY-Qbb" secondAttribute="trailing" id="Jv0-0c-IvE"/>
+                                    <constraint firstItem="are-gK-YY8" firstAttribute="leading" secondItem="BUE-Re-mIZ" secondAttribute="leading" id="Mqy-dx-G2W"/>
+                                    <constraint firstItem="Aoa-B7-sqF" firstAttribute="top" secondItem="htn-xY-Qbb" secondAttribute="bottom" id="PP5-ig-Ve0"/>
+                                    <constraint firstItem="ezU-zb-jXh" firstAttribute="top" secondItem="2pD-Le-X6s" secondAttribute="bottom" id="PVF-zF-fzO"/>
+                                    <constraint firstItem="2pD-Le-X6s" firstAttribute="leading" secondItem="BUE-Re-mIZ" secondAttribute="leading" id="PmL-A9-uy5"/>
+                                    <constraint firstAttribute="trailing" secondItem="Aoa-B7-sqF" secondAttribute="trailing" id="WXZ-Sg-Lgz"/>
+                                    <constraint firstAttribute="trailing" secondItem="are-gK-YY8" secondAttribute="trailing" id="bvc-na-lto"/>
+                                    <constraint firstAttribute="bottom" secondItem="Aoa-B7-sqF" secondAttribute="bottom" id="f70-fy-bqs"/>
+                                    <constraint firstAttribute="trailing" secondItem="2pD-Le-X6s" secondAttribute="trailing" id="gO0-nT-eKm"/>
+                                    <constraint firstItem="are-gK-YY8" firstAttribute="top" secondItem="BUE-Re-mIZ" secondAttribute="top" id="kIQ-Pa-eoy"/>
+                                    <constraint firstAttribute="trailing" secondItem="ezU-zb-jXh" secondAttribute="trailing" id="pMQ-uY-S5a"/>
+                                    <constraint firstItem="ezU-zb-jXh" firstAttribute="leading" secondItem="BUE-Re-mIZ" secondAttribute="leading" id="rcq-by-vtd"/>
+                                    <constraint firstItem="htn-xY-Qbb" firstAttribute="top" secondItem="ezU-zb-jXh" secondAttribute="bottom" id="vLT-SU-47U"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="BUE-Re-mIZ" secondAttribute="trailing" id="1b7-kh-mCo"/>
                             <constraint firstItem="Xl4-wz-4Np" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="1vj-mQ-cKA"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Xl4-wz-4Np" secondAttribute="bottom" id="2rp-Tp-MTt"/>
                             <constraint firstItem="Xl4-wz-4Np" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="V2k-Hi-7cM"/>
+                            <constraint firstItem="BUE-Re-mIZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="WOy-jl-hch"/>
+                            <constraint firstItem="BUE-Re-mIZ" firstAttribute="top" secondItem="oa0-Hr-Fjy" secondAttribute="bottom" id="aZl-AW-V6r"/>
+                            <constraint firstItem="oa0-Hr-Fjy" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="asy-h4-xJS"/>
                             <constraint firstAttribute="trailing" secondItem="Xl4-wz-4Np" secondAttribute="trailing" id="fuf-sZ-uIy"/>
+                            <constraint firstItem="oa0-Hr-Fjy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qiM-Ek-p0N"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Carpooling UdeC" id="vN2-Ci-TUF">
                         <barButtonItem key="backBarButtonItem" title=" " id="5tl-fd-BwC"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelButton" destination="Aoa-B7-sqF" id="1wC-sz-h9R"/>
+                        <outlet property="goToHomeButton" destination="are-gK-YY8" id="DKR-IV-QdR"/>
+                        <outlet property="goToUniversityButton" destination="ezU-zb-jXh" id="I6P-AJ-5jJ"/>
                         <outlet property="mapView" destination="Xl4-wz-4Np" id="0Qd-Ck-xJC"/>
+                        <outlet property="searchButton" destination="oa0-Hr-Fjy" id="NTq-x1-u8G"/>
+                        <outlet property="searchItemsContainerView" destination="BUE-Re-mIZ" id="AgL-gF-Yns"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -54,7 +148,7 @@
                         <viewControllerLayoutGuide type="bottom" id="qdM-rc-qLD"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sWe-iG-8hQ">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -75,9 +169,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CHn-4K-DXZ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="QMt-4E-4ND">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0" green="0.2196078431372549" blue="0.396078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.15686274509803921" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -97,10 +192,10 @@
                 <navigationController storyboardIdentifier="SideMenuNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="qv0-PB-99y" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="ggK-kZ-BxJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.0" green="0.21960784310000001" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.15686274510000001" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -123,4 +218,7 @@
             <point key="canvasLocation" x="-1455" y="382"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="home_searchbar" width="304" height="36"/>
+    </resources>
 </document>
