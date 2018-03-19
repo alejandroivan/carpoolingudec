@@ -14,8 +14,10 @@
 		2C6512341F2ED51E006AB520 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C6512321F2ED51E006AB520 /* LaunchScreen.storyboard */; };
 		2C6512401F2ED780006AB520 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C65123F1F2ED780006AB520 /* AdSupport.framework */; };
 		2C6512451F2ED85E006AB520 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6512441F2ED85E006AB520 /* LoginManager.m */; };
-		2C65124B1F2EE18C006AB520 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C65124A1F2EE18C006AB520 /* HomeViewController.m */; };
 		2C65124D1F2EE245006AB520 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C65124C1F2EE245006AB520 /* CoreLocation.framework */; };
+		2C84C9BD205F5E9C003559B1 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C84C9BB205F5E9C003559B1 /* HomeViewController.m */; };
+		2C84C9C1205F626E003559B1 /* DriversHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C84C9C0205F626E003559B1 /* DriversHomeViewController.m */; };
+		2C84C9C4205F6708003559B1 /* DriversShowRouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C84C9C3205F6708003559B1 /* DriversShowRouteViewController.m */; };
 		2CADDACF1F2FEE8700814820 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CADDACE1F2FEE8700814820 /* LocationManager.m */; };
 		2CADDAD41F2FFF8300814820 /* ActivityIndicatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CADDAD31F2FFF8300814820 /* ActivityIndicatorViewController.m */; };
 		2CADDAD91F30215700814820 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CADDAD81F30215700814820 /* LoginViewController.m */; };
@@ -42,9 +44,13 @@
 		2C65123F1F2ED780006AB520 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		2C6512431F2ED85E006AB520 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginManager.h; path = carpoolingudec/Frameworks/LoginManager/LoginManager.h; sourceTree = "<group>"; };
 		2C6512441F2ED85E006AB520 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginManager.m; path = carpoolingudec/Frameworks/LoginManager/LoginManager.m; sourceTree = "<group>"; };
-		2C6512491F2EE18C006AB520 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = "View controllers/Home/HomeViewController.h"; sourceTree = "<group>"; };
-		2C65124A1F2EE18C006AB520 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = "View controllers/Home/HomeViewController.m"; sourceTree = "<group>"; };
 		2C65124C1F2EE245006AB520 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		2C84C9BB205F5E9C003559B1 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		2C84C9BC205F5E9C003559B1 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		2C84C9BF205F626E003559B1 /* DriversHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DriversHomeViewController.h; path = "View controllers/Ofrecer viajes/DriversHomeViewController.h"; sourceTree = "<group>"; };
+		2C84C9C0205F626E003559B1 /* DriversHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DriversHomeViewController.m; path = "View controllers/Ofrecer viajes/DriversHomeViewController.m"; sourceTree = "<group>"; };
+		2C84C9C2205F6708003559B1 /* DriversShowRouteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DriversShowRouteViewController.h; path = "View controllers/Ofrecer viajes/DriversShowRouteViewController.h"; sourceTree = "<group>"; };
+		2C84C9C3205F6708003559B1 /* DriversShowRouteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DriversShowRouteViewController.m; path = "View controllers/Ofrecer viajes/DriversShowRouteViewController.m"; sourceTree = "<group>"; };
 		2CADDACD1F2FEE8700814820 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationManager.h; path = carpoolingudec/Frameworks/LocationManager/LocationManager.h; sourceTree = "<group>"; };
 		2CADDACE1F2FEE8700814820 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationManager.m; path = carpoolingudec/Frameworks/LocationManager/LocationManager.m; sourceTree = "<group>"; };
 		2CADDAD21F2FFF8300814820 /* ActivityIndicatorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityIndicatorViewController.h; path = "View controllers/Superclasses/ActivityIndicatorViewController.h"; sourceTree = "<group>"; };
@@ -61,7 +67,6 @@
 		2CADDAE81F30251700814820 /* SideMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SideMenuViewController.m; path = "View controllers/Side Menu/SideMenuViewController.m"; sourceTree = "<group>"; };
 		2CADDAED1F30275100814820 /* UIViewController+KeyboardHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+KeyboardHelper.h"; path = "carpoolingudec/Frameworks/UIViewController+KeyboardHelper/UIViewController+KeyboardHelper.h"; sourceTree = "<group>"; };
 		2CADDAEE1F30275100814820 /* UIViewController+KeyboardHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+KeyboardHelper.m"; path = "carpoolingudec/Frameworks/UIViewController+KeyboardHelper/UIViewController+KeyboardHelper.m"; sourceTree = "<group>"; };
-		2CD4DE452054BFF9009B9330 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		2CD4DE462054BFF9009B9330 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		2CD4DE4B2054C947009B9330 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreLocation.framework; sourceTree = "<group>"; };
 		2CD4DE4C2054CA21009B9330 /* LocationManagerUpdatesDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocationManagerUpdatesDelegate.h; path = carpoolingudec/Frameworks/LocationManager/LocationManagerUpdatesDelegate.h; sourceTree = "<group>"; };
@@ -159,18 +164,31 @@
 				2CADDADA1F30222700814820 /* Side Menu */,
 				2CADDAD11F2FFF6800814820 /* Superclasses */,
 				2CADDAD01F2FFF5700814820 /* Login */,
-				2C6512481F2EE165006AB520 /* Home */,
+				2C84C9BA205F5E9C003559B1 /* Buscar viajes */,
+				2C84C9BE205F6252003559B1 /* Ofrecer viajes */,
 			);
 			name = "View controllers";
 			sourceTree = "<group>";
 		};
-		2C6512481F2EE165006AB520 /* Home */ = {
+		2C84C9BA205F5E9C003559B1 /* Buscar viajes */ = {
 			isa = PBXGroup;
 			children = (
-				2C6512491F2EE18C006AB520 /* HomeViewController.h */,
-				2C65124A1F2EE18C006AB520 /* HomeViewController.m */,
+				2C84C9BC205F5E9C003559B1 /* HomeViewController.h */,
+				2C84C9BB205F5E9C003559B1 /* HomeViewController.m */,
 			);
-			name = Home;
+			name = "Buscar viajes";
+			path = "View controllers/Buscar viajes";
+			sourceTree = "<group>";
+		};
+		2C84C9BE205F6252003559B1 /* Ofrecer viajes */ = {
+			isa = PBXGroup;
+			children = (
+				2C84C9BF205F626E003559B1 /* DriversHomeViewController.h */,
+				2C84C9C0205F626E003559B1 /* DriversHomeViewController.m */,
+				2C84C9C2205F6708003559B1 /* DriversShowRouteViewController.h */,
+				2C84C9C3205F6708003559B1 /* DriversShowRouteViewController.m */,
+			);
+			name = "Ofrecer viajes";
 			sourceTree = "<group>";
 		};
 		2CADDACC1F2FEE6E00814820 /* LocationManager */ = {
@@ -393,10 +411,12 @@
 				2CADDACF1F2FEE8700814820 /* LocationManager.m in Sources */,
 				2C6512291F2ED51E006AB520 /* AppDelegate.m in Sources */,
 				2CADDAD41F2FFF8300814820 /* ActivityIndicatorViewController.m in Sources */,
+				2C84C9BD205F5E9C003559B1 /* HomeViewController.m in Sources */,
 				2CADDAD91F30215700814820 /* LoginViewController.m in Sources */,
+				2C84C9C4205F6708003559B1 /* DriversShowRouteViewController.m in Sources */,
 				2CADDADE1F30224400814820 /* SideMenuSegue.m in Sources */,
+				2C84C9C1205F626E003559B1 /* DriversHomeViewController.m in Sources */,
 				2CADDAEF1F30275100814820 /* UIViewController+KeyboardHelper.m in Sources */,
-				2C65124B1F2EE18C006AB520 /* HomeViewController.m in Sources */,
 				2C6512261F2ED51E006AB520 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,7 +428,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2C65122E1F2ED51E006AB520 /* Base */,
-				2CD4DE452054BFF9009B9330 /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

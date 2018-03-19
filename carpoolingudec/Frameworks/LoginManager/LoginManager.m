@@ -328,6 +328,9 @@ static LoginManager *__loginManagerCarpoolingUdeC;
                                                              
                                                              if ( ! responseParserError ) {
                                                                  LOG(@"RESPONSE: %@", responseData);
+                                                                 
+                                                                 _serverResponse    = responseData;
+
                                                                  NSString *message  = responseData[@"message"];
                                                                  BOOL loggedIn      = [responseData[@"logged_in"] boolValue];
                                                                  NSInteger code     = [responseData[@"code"] integerValue];
@@ -384,6 +387,8 @@ static LoginManager *__loginManagerCarpoolingUdeC;
                                                                  
                                                                  _tempUsername = nil;
                                                                  _tempPassword = nil;
+                                                                 
+                                                                 _serverResponse = nil;
                                                                  
                                                                  if ( completionHandler ) {
                                                                      completionHandler(NO, responseParserError, responseParserError.localizedDescription);

@@ -18,6 +18,7 @@ static NSInteger kLoginManagerErrorNeedsRegistrationCode = 428;
 @property (assign, nonatomic) BOOL debugEnabled;
 @property (assign, atomic, readonly) BOOL loggedIn;
 @property (strong, atomic, readonly) NSString * _Nullable username;
+@property (strong, nonatomic, readonly) NSDictionary *serverResponse;
 
 
 /**

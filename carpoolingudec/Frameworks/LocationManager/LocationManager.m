@@ -7,6 +7,7 @@
 //
 
 #import "LocationManager.h"
+#import "LoginManager.h"
 @import GoogleMaps;
 @import GooglePlaces;
 
@@ -257,6 +258,94 @@ void (^__waitingForPermissionsCompletionHandler)(BOOL authorized) = nil;
     }
     
     __waitingForPermissionsCompletionHandler = nil;
+}
+
+
+
+
+#pragma mark - Fixed locations
+- (CLLocation *)locationForUniversity {
+    static CLLocation *location = nil;
+    
+    if ( ! location ) {
+        location = [[CLLocation alloc] initWithLatitude:-36.8292642
+                                              longitude:-73.0359495];
+    }
+    
+    return location;
+}
+
+- (CLLocation *)locationForHome {
+    NSNumber *latitude  = [[LoginManager sharedManager] serverResponse][@"data"][@"casa_latitud"];
+    NSNumber *longitude = [[LoginManager sharedManager] serverResponse][@"data"][@"casa_longitud"];
+    
+    if ( ! latitude || ! longitude || latitude == (id) [NSNull null] || longitude == (id) [NSNull null] ) {
+        return nil;
+    }
+    
+    CLLocation *location = [[CLLocation alloc] initWithLatitude:latitude.doubleValue
+                                                      longitude:longitude.doubleValue];
+    
+    return location;
+}
+
++ (void)getDirectionsByCarWithOrigin:(CLLocation *)origin destination:(CLLocation *)destination completionHandler:(void (^)(BOOL success, NSDictionary *directions))completionHandler {
+    static NSString *baseUrlString = @"https://maps.googleapis.com/maps/api/directions/json?";
+    
+    if ( ! origin || ! destination ) {
+        if ( completionHandler ) {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                completionHandler(NO, nil);
+            }];
+        }
+        return;
+    }
+    
+    NSString *originString = [NSString stringWithFormat:@"origin=%.10g,%.10g", origin.coordinate.latitude, origin.coordinate.longitude];
+    NSString *destinationString = [NSString stringWithFormat:@"destination=%.10g,%.10g", destination.coordinate.latitude, destination.coordinate.longitude];
+    
+    NSString *queryUrlString = [NSString stringWithFormat:@"%@%@&%@",
+                                baseUrlString,
+                                originString,
+                                destinationString
+                                ];
+    NSURL *queryURL = [NSURL URLWithString:queryUrlString];
+    
+    LOG(@"Querying URL: %@", queryURL.absoluteString);
+    
+    if ( queryURL ) {
+        [[NSOperationQueue new] addOperationWithBlock:^{
+            NSData *directionsData = [[NSData alloc] initWithContentsOfURL:queryURL];
+            NSError *error;
+            
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:directionsData
+                                                                 options:NSJSONReadingMutableContainers
+                                                                   error:&error];
+            
+            if ( ! error ) {
+                if ( completionHandler ) {
+                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                        completionHandler(YES, json);
+                    }];
+                }
+                
+                return;
+            }
+            else {
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    completionHandler(NO, nil);
+                }];
+            }
+        }];
+        
+        return;
+    }
+    
+    if ( completionHandler ) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            completionHandler(NO, nil);
+        }];
+    }
 }
 
 @end

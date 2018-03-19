@@ -8,15 +8,32 @@
 
 #import "SideMenuViewController.h"
 
-@interface SideMenuViewController ()
 
+
+
+@interface SideMenuViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSArray<NSDictionary *> *sideMenuElements;
 @end
+
+
+
 
 @implementation SideMenuViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.sideMenuElements = @[
+                              @{
+                                  @"name"   : @"Buscar viajes",
+                                  @"segue"  : @"HomeSegue",
+                                  },
+                              @{
+                                  @"name"   : @"Ofrecer viajes",
+                                  @"segue"  : @"DriversHomeSegue",
+                                  },
+                              ];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,5 +50,30 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+
+
+#pragma mark - UITableView
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.sideMenuElements.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"SideMenuTableViewCell";
+    UITableViewCell *cell           = [tableView dequeueReusableCellWithIdentifier:cellIdentifier
+                                                                      forIndexPath:indexPath];
+    NSDictionary *info              = self.sideMenuElements[indexPath.row];
+    
+    cell.textLabel.text             = info[@"name"];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary *info = self.sideMenuElements[indexPath.row];
+    [self performSegueWithIdentifier:info[@"segue"]
+                              sender:info];
+}
 
 @end

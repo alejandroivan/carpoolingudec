@@ -64,44 +64,6 @@
     self.sideMenuContainer              = container;
     self.window.rootViewController      = container;
     
-    
-    
-    
-    
-    
-//    /*
-//     Login Screen
-//     */
-//    ActivityIndicatorViewController *activityIndicatorViewController;
-//    if ( [self.window.rootViewController isKindOfClass:[ActivityIndicatorViewController class]] ) {
-//        activityIndicatorViewController = (ActivityIndicatorViewController *) self.window.rootViewController;
-//    }
-//    else {
-//        activityIndicatorViewController = (ActivityIndicatorViewController *) [[(UINavigationController *)[self.sideMenuContainer centerViewController] viewControllers] lastObject];
-//    }
-//
-//    [activityIndicatorViewController showIndicator];
-//
-//    [[LoginManager sharedManager] revalidateSessionFromCredentialsWithCompletionHandler:^(BOOL loggedIn, BOOL withCredentials, NSError *error) {
-//        [activityIndicatorViewController hideIndicator];
-//
-//        if ( ! loggedIn ) {
-//            [self showLoginScreen:withCredentials];
-//
-//            if ( error.code == 401 ) {
-//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                    [self showAlertWithTitle:@"Cuenta no habilitada"
-//                                     message:@"Esta cuenta no se encuentra habilitada."
-//                                proceedTitle:nil
-//                               proceedAction:nil
-//                                 cancelTitle:@"Cerrar"
-//                                cancelAction:nil];
-//                });
-//            }
-//        }
-//    }];
-    
-    
     return YES;
 }
 

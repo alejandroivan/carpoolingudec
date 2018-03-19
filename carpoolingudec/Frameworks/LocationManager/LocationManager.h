@@ -26,4 +26,9 @@
 - (void)startUpdatingLocation;
 - (void)stopUpdatingLocation;
 
+@property (strong, nonatomic) CLLocation *locationForUniversity;
+@property (strong, nonatomic) CLLocation *locationForHome;
+
++ (void)getDirectionsByCarWithOrigin:(CLLocation *)origin destination:(CLLocation *)destination completionHandler:(void (^)(BOOL success, NSDictionary *directions))completionHandler;
+
 @end
